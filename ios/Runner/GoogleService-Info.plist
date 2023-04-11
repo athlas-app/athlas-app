@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>894066163728-an3j08cq95b2pochee76fuibi5c5kpp5.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.894066163728-an3j08cq95b2pochee76fuibi5c5kpp5</string>
+	<key>API_KEY</key>
+	<string>AIzaSyChXji-W_yfyncMQVz4eDZpB15K9kj6Q7M</string>
+	<key>GCM_SENDER_ID</key>
+	<string>894066163728</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.athlas.athlas.dev</string>
+	<key>PROJECT_ID</key>
+	<string>athlas-dev</string>
+	<key>STORAGE_BUCKET</key>
+	<string>athlas-dev.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:894066163728:ios:6e0bc49fe2200fa5d2ca95</string>
+</dict>
+</plist>

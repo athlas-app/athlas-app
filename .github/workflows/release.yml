@@ -1,0 +1,52 @@
+name: Athlas App CI Merge
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: macos-latest
+    environment: production
+    steps:
+      - uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          name: id_rsa
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-java@v2
+        with:
+          distribution: "zulu"
+          java-version: "11"
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+          architecture: x64
+      - name: Install Doppler CLI
+        uses: dopplerhq/cli-action@v2
+      # Build app
+      - run: flutter pub get --verbose
+      - name: Create generated build files
+        run: doppler run --mount .env -- flutter pub run build_runner build --delete-conflicting-outputs --verbose
+        env:
+          DOPPLER_TOKEN: ${{ secrets.DOPPLER_TOKEN }}
+      - run: flutter build appbundle --verbose --release --flavor=production --target=lib/main_prod.dart # Build Android APK
+      - run: flutter build ipa --verbose --release --no-codesign --flavor=production --target=lib/main_prod.dart # Build iOS app
+      # Change version number
+      - name: Bump version and push tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v6.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          custom_release_rules: major:major, minor:minor
+      - name: Create a GitHub release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ steps.tag_version.outputs.new_tag }}
+          name: Release ${{ steps.tag_version.outputs.new_tag }}
+          body: ${{ steps.tag_version.outputs.changelog }}

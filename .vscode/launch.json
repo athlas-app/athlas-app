@@ -1,0 +1,29 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "athlas-sim",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "debug",
+      "program": "lib/main_dev.dart",
+      "args": ["--flavor", "dev", "--target", "lib/main_dev.dart"]
+    },
+    {
+      "name": "athlas-dev",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release",
+      "program": "lib/main_dev.dart",
+      "args": ["--flavor", "dev", "--target", "lib/main_dev.dart"]
+    },
+    {
+      "name": "athlas-prod",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release",
+      "program": "lib/main_prod.dart",
+      "args": ["--flavor", "prod", "--target", "lib/main_prod.dart"]
+    }
+  ]
+}
